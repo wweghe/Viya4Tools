@@ -107,5 +107,9 @@ sas-crunchy-data-postgres-sfue-579f5fdc8f-v5kl2                   3/3     Runnin
 sas-crunchy-data-postgres-stanza-create-jt54s                     0/1     Completed   0          4h23m
 ```
 
+## getuserpods.sh
 
+## mon-compute-pods.sh
+Make sure you install the "resource-capacity" plugin in kubectl first : 
+https://krew.sigs.k8s.io/plugins/
 
