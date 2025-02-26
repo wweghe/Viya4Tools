@@ -27,4 +27,4 @@ do
     fi
 done
 
-kubectl -n $namespace get pods -o wide -l 'launcher.sas.com/job-type in (compute-server, sas-connect-server, sas-batch-job)' -L launcher.sas.com/username -L launcher.sas.com/requested-by-client --sort-by=.metadata.creationTimestamp
+kubectl -n $namespace get pods -o wide -l 'sas.com/created-by=sas-launcher' -L launcher.sas.com/username -L launcher.sas.com/requested-by-client --sort-by=.metadata.creationTimestamp
