@@ -8,31 +8,31 @@ usage()
     echo ""
 }
 
-if [ "\$#" -eq 0 ]; then
+if [ "$#" -eq 0 ]; then
     usage
     exit 1
 fi
 
-while [ "\$#" -gt 0 ]
+while [ "$#" -gt 0 ]
 do
-    if [ "\$1" = "-n" ]; then
+    if [ "$1" = "-n" ]; then
         shift
-        namespace="\$1"
+        namespace="$1"
     else
         shift
     fi
 done
 
-NS=\$namespace
-SessName=viya_watch_\$NS
-tmux new -s \$SessName -d
-tmux send-keys -t \$SessName "watch -n 5 -d -c \"$HOME/bin/GetPodStatus.sh  -n \${NS}\" "  C-m
-tmux split-window -v -p 70 -t \$SessName
-tmux send-keys -t \$SessName "watch -n 5   \"$HOME/bin/getuserpods.sh  -n \${NS}\" "  C-m
-tmux split-window -v -p 70 -t \$SessName
-tmux split-window -v -p 10 -t \$SessName
-tmux send-keys -t \$SessName "kubectl -n  \${NS} logs -f \$(kubectl -n \${NS} get pods | grep read | awk '{ print \$1}' ) | jq '.timeStamp, .message' "  C-m
+NS=$namespace
+SessName=viya_watch_$NS
+tmux new -s $SessName -d
+tmux send-keys -t $SessName "watch -n 5 -d -c \"$HOME/bin/GetPodStatus.sh  -n ${NS}\" "  C-m
+tmux split-window -v -p 70 -t $SessName
+tmux send-keys -t $SessName "watch -n 5   \"$HOME/bin/getuserpods.sh  -n ${NS}\" "  C-m
+tmux split-window -v -p 70 -t $SessName
+tmux split-window -v -p 10 -t $SessName
+tmux send-keys -t $SessName "kubectl -n  ${NS} logs -f $(kubectl -n ${NS} get pods | grep read | awk '{ print $1}' ) | jq '.timeStamp, .message' "  C-m
 
 
 # Attach the tmux configuration to your session.
-tmux attach -t \$SessName
+tmux attach -t $SessName
