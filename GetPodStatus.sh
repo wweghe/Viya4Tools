@@ -83,7 +83,7 @@ else
   elif [ "$status" = "Evicted" ] ; then
       kubectl -n $namespace get pods |grep Evicted
   elif [ "$status" = "Others" ] ; then
-    kubectl -n $namespace get pods |grep -v -e STATUS -e Running -e Error -e Evicted -e Completed -e CrashLoopBackOff -e Pending -e PodInitializing -e ContainerCreating -e Init:0/1 -e Init:0/2 -e Init:1/2 -e Terminating
+    kubectl -n $namespace get pods |grep -v -e STATUS -e Running -e Error -e Evicted -e Completed -e CrashLoopBackOff -e Pending -e PodInitializing -e ContainerCreating -e Init -e Terminating
   elif [ "$status" = "Initializing" ] ; then
     kubectl -n $namespace get pods |grep 'PodInitializing\|ContainerCreating\|Init'
   elif [ "$status" = "All" ] ; then
